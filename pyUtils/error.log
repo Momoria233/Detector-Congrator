@@ -1,0 +1,38 @@
+2025-01-23 02:38:56,306 - INFO - Starting detectionMain.py
+2025-01-23 02:39:21,858 - INFO - Starting detectionMain.py
+2025-01-23 02:40:44,689 - INFO - Starting detectionMain.py
+2025-01-23 02:40:52,160 - INFO - launchCount: 1
+2025-01-23 02:41:10,468 - INFO - launchCount: 2
+2025-01-23 02:41:26,986 - INFO - launchCount: 3
+2025-01-23 02:41:49,772 - INFO - finish
+2025-01-23 02:41:49,772 - INFO - Listening on port 1145...
+2025-01-23 02:41:54,405 - INFO - captured
+2025-01-23 02:41:55,751 - INFO - Image sent successfully
+2025-01-23 02:41:55,751 - INFO - recvImg.jpg saved
+2025-01-23 02:44:07,897 - INFO - Starting detectionMain.py
+2025-01-23 02:44:18,636 - INFO - launchCount: 1
+2025-01-23 02:45:18,138 - INFO - Starting detectionMain.py
+2025-01-23 02:45:28,814 - INFO - launchCount: 1
+2025-01-23 02:46:47,985 - INFO - Starting detectionMain.py
+2025-01-23 02:46:55,597 - INFO - launchCount: 1
+2025-01-23 02:47:09,870 - INFO - launchCount: 2
+2025-01-23 02:47:28,805 - INFO - launchCount: 3
+2025-01-23 02:51:12,363 - INFO - Starting detectionMain.py
+2025-01-23 02:51:15,465 - INFO - launchCount: 1
+2025-01-23 02:51:17,727 - INFO - Process Notepad.exe terminated successfully
+2025-01-23 02:51:30,635 - INFO - launchCount: 2
+2025-01-23 02:51:33,290 - INFO - Process Notepad.exe terminated successfully
+2025-01-23 02:51:43,938 - INFO - launchCount: 3
+2025-01-23 02:51:45,685 - INFO - Process chrome.exe terminated successfully
+2025-01-23 02:57:18,348 - INFO - Starting detectionMain.py
+2025-01-23 02:57:24,837 - INFO - launchCount: 1
+2025-01-23 02:57:26,536 - INFO - Process Notepad.exe (PID: 44776) terminated successfully
+2025-01-23 02:57:47,577 - INFO - launchCount: 2
+2025-01-23 02:57:52,839 - INFO - Process chrome.exe (PID: 8892) terminated successfully
+2025-01-23 02:58:10,939 - INFO - launchCount: 3
+2025-01-23 02:58:13,040 - INFO - Process firefox.exe (PID: 7388) terminated successfully
+2025-01-23 02:58:25,985 - INFO - Starting detectionMain.py
+2025-01-23 02:58:29,092 - INFO - launchCount: 1
+2025-01-23 02:58:33,712 - INFO - Process Notepad.exe (PID: 15080) terminated successfully
+2025-01-23 02:59:58,198 - INFO - launchCount: 2
+2025-01-23 03:00:04,631 - INFO - Process Notepad.exe (PID: 54832) already terminated

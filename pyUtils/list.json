@@ -1,0 +1,8 @@
+{
+    "target_processes": ["chrome.exe", "firefox.exe", "notepad.exe"],
+    "translations": {
+        "chrome.exe": "Google Chrome",
+        "firefox.exe": "Mozilla Firefox",
+        "notepad.exe": "Notepad"
+    }
+}

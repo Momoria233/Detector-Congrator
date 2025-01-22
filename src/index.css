@@ -1,0 +1,59 @@
+ /* 设置全屏背景 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: url('recvImg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* 外部容器设置 */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* 文本框设置 */
+.text-box-hostname {
+    padding: 30px;
+    /* border: 5px solid white; */
+    /* background-color: red; */
+    font-size: 50px;
+    font-family: Arial, sans-serif;
+    color: rgb(255, 0, 0);
+    position: fixed;
+    left: 100px;
+    top: 200px;
+    margin-bottom: 20px;
+}
+
+.text-box-app {
+    padding: 30px;
+    /* border: 5px solid white; */
+    /* background-color: red; */
+    font-size: 50px;
+    font-family: Arial, sans-serif;
+    color: rgb(255, 0, 0);
+    position: fixed;
+    left: 500px;
+    top: 250px;
+    margin-bottom: 20px;
+}
+
+/* 图片设置 */
+.image {
+    width: 300px;
+    height: auto;
+    position: fixed;
+    left: 410px;
+    top: 450px;
+    /* border: 3px solid white; */
+}
+
+/* 音乐播放设置（自动循环） */
+audio {
+    display: none;
+}

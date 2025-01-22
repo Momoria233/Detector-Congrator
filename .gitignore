@@ -1,0 +1,6 @@
+./pyUtils/error.log
+./pyUtils/capture.jpg
+./src/message.json
+./src/recvImg.jpg
+.git
+node_modules/

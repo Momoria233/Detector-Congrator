@@ -1,0 +1,14 @@
+{
+  "name": "congratsui",
+  "version": "1.0.0",
+  "description": "a ui that shows congrats",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Momoria",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.2.1"
+  }
+}

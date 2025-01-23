@@ -147,19 +147,19 @@ if __name__ == '__main__':
                 launchCount += 1
                 print("launchCount: ", launchCount)
                 logging.info(f"launchCount: {launchCount}")
-                show_custom_messagebox("警告", f"这是您第1次打开违规软件{process}，请在10秒内关掉软件，否则会再次计入警告次数", process_info)
+                show_custom_messagebox("警告", f"检测到您第1次运行违规软件 {process}，请在10秒内关闭，否则将再次计入警告次数。", process_info)
                 time.sleep(10)
             elif process_info and launchCount == 1:
                 launchCount += 1
                 print("launchCount: ", launchCount)
                 logging.info(f"launchCount: {launchCount}")
-                show_custom_messagebox("警告", f"这是您第2次打开违规软件{process}，请在10秒内关掉软件，否则达到三次后会通报全班！", process_info)
+                show_custom_messagebox("警告", f"检测到您第2次运行违规软件 {process}，请在10秒内关闭，累计3次将通报全班。", process_info)
                 time.sleep(10)
             elif process_info and launchCount == 2:
                 launchCount += 1
                 print("launchCount: ", launchCount)
                 logging.info(f"launchCount: {launchCount}")
-                show_custom_messagebox("警告", f"这是您第3次打开违规软件{process}，请不要再这么做，否则将会通报全班！", process_info)
+                show_custom_messagebox("警告", f"这是您第3次运行违规软件 {process}，请不要再这么做，否则将通报全班！", process_info)
                 time.sleep(10)
             else:
                 time.sleep(0.5)

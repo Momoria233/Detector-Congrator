@@ -25,8 +25,8 @@ body, html {
     font-family: Arial, sans-serif;
     color: rgb(255, 0, 0);
     position: fixed;
-    left: 100px;
-    top: 200px;
+    left: 175px;
+    top: 275px;
     margin-bottom: 20px;
 }
 
@@ -38,8 +38,8 @@ body, html {
     font-family: Arial, sans-serif;
     color: rgb(255, 0, 0);
     position: fixed;
-    left: 500px;
-    top: 250px;
+    left: 380px;
+    top: 350px;
     margin-bottom: 20px;
 }
 

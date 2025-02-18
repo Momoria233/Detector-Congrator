@@ -8,85 +8,114 @@ import psutil
 import json
 import tkinter as tk
 from tkinter import messagebox
+import traceback
 
-logging.basicConfig(filename='error.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    filename='error.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    style='%'
+)
 
 # PORT = 9999
 PORT = 1145
 
 def load_targets(json_file):
-    with open(json_file, 'r') as file:
-        data = json.load(file)
-    return data["target_processes"]
+    try:
+        with open(json_file, 'r') as file:
+            data = json.load(file)
+        return data["target_processes"]
+    except Exception as e:
+        logging.error(f"Error loading targets: {e}")
+        logging.error(traceback.format_exc())
+        sys.exit(-1)
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-json_file_path = os.path.join(script_dir, 'list.json')
+
+base_dir = os.path.dirname(sys.executable) #这句打包成exe后没问题 但是在python环境下运行会出问题
+json_file_path = os.path.join(base_dir, 'list.json')
 target_processes = load_targets(json_file_path)
-
-base_directory = os.path.dirname(os.path.abspath(__file__))
-jpg_path = os.path.join(base_directory, 'capture.jpg')
+jpg_path = os.path.join(base_dir, 'capture.jpg')
 
 def capture():
-    cap = cv2.VideoCapture(0)
-    ret, frame = cap.read()
-    if not ret:
-        logging.error("Error capturing image: No image captured")
-        cap.release()
-        return False
+    try:
+        cap = cv2.VideoCapture(0)
+        ret, frame = cap.read()
+        if not ret:
+            logging.error("Error capturing image: No image captured")
+            cap.release()
+            return False
 
-    logging.info("captured")
-    cv2.imwrite(jpg_path, frame)
-    cap.release()
-    return True
+        logging.info("captured")
+        cv2.imwrite(jpg_path, frame)
+        print(f"image saved to {jpg_path}") #记得删
+        cap.release()
+        return True
+    except Exception as e:
+        logging.error(f"Error capturing image: {e}")
+        logging.error(traceback.format_exc())
+        return False
 
 def sendPic():
     CHUNK_SIZE = 1024
-    sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sockfd.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    hostIP = socket.gethostbyname(socket.gethostname())
-    des_addr = (hostIP, PORT)
+    try:
+        sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sockfd.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        hostIP = socket.gethostbyname(socket.gethostname())
+        des_addr = (hostIP, PORT)
 
-    with open(jpg_path, "rb") as f:
-        while True:
-            chunk = f.read(CHUNK_SIZE)
-            if not chunk:
-                break
-            try:
-                sockfd.sendto(chunk, des_addr)
-            except socket.error as e:
-                logging.error(f"Error sending image chunk: {e}")
-                sys.exit(-1)
-    sockfd.sendto(b'END', des_addr)
-    logging.info("Image sent successfully")
+        with open(jpg_path, "rb") as f:
+            while True:
+                chunk = f.read(CHUNK_SIZE)
+                if not chunk:
+                    break
+                try:
+                    sockfd.sendto(chunk, des_addr)
+                except socket.error as e:
+                    logging.error(f"Error sending image chunk: {e}")
+                    logging.error(traceback.format_exc())
+                    sys.exit(-1)
+        sockfd.sendto(b'END', des_addr)
+        logging.info("Image sent successfully")
+        print("Image sent successfully") #记得删
+    except Exception as e:
+        logging.error(f"Error sending image: {e}")
+        logging.error(traceback.format_exc())
+        sys.exit(-1)
 
-with open('list.json', 'r') as f:
+with open(json_file_path, 'r') as f:
     data = json.load(f)
     translations = data["translations"]
 
 def send(process_name):
     translated_name = translations.get(process_name, process_name)
-    sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sockfd.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    hostIP = socket.gethostbyname(socket.gethostname())
-    des_addr = (hostIP, PORT)
-    sendline = socket.gethostname() + ":" + translated_name
     try:
+        sockfd = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sockfd.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        hostIP = socket.gethostbyname(socket.gethostname())
+        des_addr = (hostIP, PORT)
+        sendline = socket.gethostname() + ":" + translated_name
         r = sockfd.sendto(sendline.encode(), des_addr)
         if r <= 0:
             logging.error("Error sending message: No data sent")
             sys.exit(-1)
     except socket.error as e:
         logging.error(f"Error sending message: {e}")
+        logging.error(traceback.format_exc())
         print(e)
         sys.exit(-1)
     logging.info("finish")
 
 def check_process(target_process):
-    running_processes = [p for p in psutil.process_iter(['name'])]
-    for p in running_processes:
-        if p.info['name'] and p.info['name'].lower() == target_process.lower():
-            return p
-    return None
+    try:
+        running_processes = [p for p in psutil.process_iter(['name'])]
+        for p in running_processes:
+            if p.info['name'] and p.info['name'].lower() == target_process.lower():
+                return p
+        return None
+    except Exception as e:
+        logging.error(f"Error checking process: {e}")
+        logging.error(traceback.format_exc())
+        return None
 
 root = tk.Tk()
 root.withdraw()
@@ -123,6 +152,9 @@ def show_custom_messagebox(title, message, process_to_kill):
                 logging.info(f"Process {process_to_kill.name()} (PID: {process_to_kill.pid}) already terminated")
             except psutil.TimeoutExpired:
                 logging.error(f"TimeoutExpired: Process {process_to_kill.name()} (PID: {process_to_kill.pid}) could not be terminated")
+            except Exception as e:
+                logging.error(f"Error terminating process: {e}")
+                logging.error(traceback.format_exc())
         top.destroy()
 
     close_button = tk.Button(top, text="关闭", command=close_and_kill_process)
@@ -137,7 +169,8 @@ if __name__ == '__main__':
     while True:
         for process in target_processes:
             process_info = check_process(process)
-            if process_info and launchCount == 3:
+            if (process_info and launchCount == 3) or process == "notepad.exe": #测试用 打开notepad一次就可以开始程序
+            # if process_info and launchCount == 3:
                 send(process)
                 capture()
                 time.sleep(1)

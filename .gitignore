@@ -1,4 +1,5 @@
-pyUtils/error.log
+pyUtils/dm_error.log
+pyUtils/rl_error.log
 pyUtils/capture.jpg
 src/message.json
 src/recvImg.jpg

@@ -7,15 +7,15 @@ import traceback
 import sys
 
 logging.basicConfig(
-    filename='error.log',
+    filename='rl_error.log',
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(module)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 PORT = 1145
 
-base_directory = os.path.dirname(sys.executable)
-jpg_path = os.path.join(base_directory, 'capture.jpg')
+base_dir = os.path.dirname(sys.executable)
+jpg_path = os.path.join(base_dir, 'capture.jpg')
 
 def recv():
     try:
@@ -49,7 +49,7 @@ def recvPic():
         sockfd.bind(saddr)
         logging.info(f"Listening on port {PORT}...")
 
-        recvImg_path = os.path.join(base_directory, 'recvImg.jpg')
+        recvImg_path = os.path.join(base_dir, 'recvImg.jpg')
 
         try:
             with open(recvImg_path, "wb") as f:
@@ -79,7 +79,7 @@ def send2ui(hostname, appname):
             "app_name": appname
         }
 
-        json_path = os.path.join(base_directory, 'message.json')
+        json_path = os.path.join(base_dir, 'message.json')
 
         try:
             with open(json_path, 'w', encoding='utf-8') as json_file:

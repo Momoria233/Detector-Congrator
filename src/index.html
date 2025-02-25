@@ -15,13 +15,13 @@
             <div class="text"></div>
         </div>
         <div class="text-box-app"></div>
-        <img src="recvImg.jpg" alt="Camera" class="image">
+        <img src="..\pyUtils\recvImg.jpg" alt="Camera" class="image">
     </div>
     <audio autoplay loop>
         <source src="Congrats.mp3" type="audio/mp3">
     </audio>
     <script>
-        fetch('./message.json')
+        fetch('../pyUtils/message.json')
             .then(response => response.json())
             .then(data => {
                 const hostnameTextBox = document.querySelector('.text-box-hostname .text');

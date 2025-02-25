@@ -11,7 +11,7 @@ from tkinter import messagebox
 import traceback
 
 logging.basicConfig(
-    filename='error.log',
+    filename='dm_error.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     style='%'

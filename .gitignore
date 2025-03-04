@@ -1,6 +1,10 @@
 pyUtils/dm_error.log
 pyUtils/rl_error.log
 pyUtils/capture.jpg
+pyUtils/build
+pyUtils/dist
+pyUtils/recvLaunch.spec
+pyUtils/detectMain.spec
 src/message.json
 src/recvImg.jpg
 .git

@@ -26,7 +26,11 @@ def recv():
         while True:
             try:
                 recvline, presaddr = sockfd.recvfrom(1024)
-                message = recvline.decode()
+                try:
+                    message = recvline.decode('utf-8')
+                except UnicodeDecodeError:
+                    logging.warning(f"Received non-UTF-8 data from {presaddr[0]}")
+                    continue
                 if message == "":
                     time.sleep(0.1)
                 else:

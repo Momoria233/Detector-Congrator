@@ -12,3 +12,5 @@ app.on('ready',()=>{
     })
     win.loadFile('./src/index.html')
 })
+
+// electron-packager ./ demoapp --win --arch=x64 --out ./outputs

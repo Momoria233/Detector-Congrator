@@ -14,6 +14,7 @@ logging.basicConfig(
 )
 PORT = 1145
 
+# base_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.dirname(sys.executable)
 jpg_path = os.path.join(base_dir, 'capture.jpg')
 

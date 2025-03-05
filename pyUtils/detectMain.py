@@ -31,7 +31,8 @@ def load_targets(json_file):
         sys.exit(-1)
 
 
-base_dir = os.path.dirname(sys.executable) #这句打包成exe后没问题 但是在python环境下运行会出问题
+# base_dir = os.path.abspath(os.path.dirname(__file__))
+base_dir = os.path.dirname(sys.executable)
 json_file_path = os.path.join(base_dir, 'list.json')
 target_processes = load_targets(json_file_path)
 jpg_path = os.path.join(base_dir, 'capture.jpg')
